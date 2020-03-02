@@ -9,4 +9,12 @@ router.get("/image", (request, response, next) => {
     .catch(next);
 });
 
+router.post("/image", async (request, response, next) => {
+  try {
+    const post = await Image.create(request.body);
+    response.send(post);
+  } catch (error) {
+    next(error);
+  }
+});
 module.exports = router;
