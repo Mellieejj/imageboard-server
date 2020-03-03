@@ -9,6 +9,7 @@ router.post("/user", async (request, response, next) => {
     const encrypted = bcrypt.hashSync(request.body.password, 10);
 
     const user = {
+      name: request.body.name,
       email: request.body.email,
       password: encrypted
     };
