@@ -19,4 +19,33 @@ router.post("/user", async (request, response, next) => {
   }
 });
 
+router.get("/user", async (request, response, next) => {
+  try {
+    const people = await User.findAll();
+    response.json(people);
+  } catch (error) {
+    next(error);
+  }
+});
+
+// zelfde als hierboven
+// router.get("/user", (request, response, next) => {
+//   User.findAll()
+//     .then(person => response.json(person))
+//     .catch(next);
+// });
+
+router.get("/user/:userId", async (request, response, next) => {
+  try {
+    const person = await User.findByPk(request.params.userId);
+    if (!person) {
+      return response.status(404).end();
+    } else {
+      response.json(person);
+    }
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = router;
