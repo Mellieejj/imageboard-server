@@ -8,4 +8,7 @@ const Image = db.define("image", {
 });
 
 Image.belongsTo(User);
+
+User.hasMany(Image);
+
 module.exports = Image;
