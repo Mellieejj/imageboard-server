@@ -13,8 +13,16 @@ router.get("/image", (request, response, next) => {
 
 router.post("/image", auth, async (request, response, next) => {
   try {
-    const post = await Image.create(request.body);
-    console.log(request.body);
+    const userId = request.user.id;
+
+    const newImage = {
+      title: request.body.title,
+      url: request.body.url,
+      userId: userId
+    };
+
+    const post = await Image.create(newImage);
+    console.log(request.body, request.user.id);
     response.send(post);
   } catch (error) {
     next(error);
