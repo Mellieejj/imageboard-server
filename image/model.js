@@ -7,8 +7,4 @@ const Image = db.define("image", {
   title: Sequelize.STRING
 });
 
-// Image.belongsTo(User);
-
-// User.hasMany(Image);
-
 module.exports = Image;

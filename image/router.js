@@ -31,9 +31,9 @@ router.post("/image", auth, async (request, response, next) => {
 
 router.delete("/image", auth, async (request, response, next) => {
   try {
-    console.log("image delete",request.body.id);
+    console.log("image delete", request);
     const imageDeleting = await Image.destroy({
-      where: { id: request.body.id }
+      where: { id: request.image.id }
     });
     response.json(imageDeleting);
   } catch (error) {
