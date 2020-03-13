@@ -1,6 +1,7 @@
 const User = require("./model");
 const bcrypt = require("bcrypt");
 const { Router } = require("express");
+const Image = require("../image/model")
 
 const router = Router();
 
@@ -38,7 +39,7 @@ router.get("/user", async (request, response, next) => {
 
 router.get("/user/:userId", async (request, response, next) => {
   try {
-    const person = await User.findByPk(request.params.userId);
+    const person = await User.findByPk(request.params.userId, {include: Image });
     if (!person) {
       return response.status(404).end();
     } else {
