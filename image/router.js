@@ -29,4 +29,13 @@ router.post("/image", auth, async (request, response, next) => {
   }
 });
 
+router.delete("/image", auth, async(request, response, next) =>{
+  try {
+    const imageDeleting = await Image.destroy({ where: {id:request.body.id}})
+    response.json(imageDeleting)
+  }catch (error){
+    next(error)
+  }
+})
+
 module.exports = router;
