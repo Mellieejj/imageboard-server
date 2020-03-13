@@ -1,6 +1,6 @@
 const Sequelize = require("sequelize");
 const db = require("../db");
-
+const Image = require("../image/model");
 const User = db.define(
   "user",
   {
@@ -22,5 +22,9 @@ const User = db.define(
     tableName: "users"
   }
 );
+
+Image.belongsTo(User);
+
+User.hasMany(Image);
 
 module.exports = User;
